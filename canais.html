@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus canais • Meu Hub do YouTube</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body data-page="canais">
+    <header>
+        <div class="container nav">
+            <div class="logo">MEU YOUTUBE HUB</div>
+            <nav class="nav-actions">
+                <a class="nav-link" data-page="feed" href="./index.html">Feed</a>
+                <a class="nav-link" data-page="salvos" href="./salvos.html">Vídeos salvos</a>
+                <a class="nav-link" data-page="canais" href="./canais.html">Meus canais</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Adicione seus canais favoritos.</h1>
+                <p>
+                    Inclua aqui os canais que você quer acompanhar. O feed principal vai mostrar os uploads mais
+                    recentes desses canais.
+                </p>
+                <div class="helper-note">
+                    Cole o link completo do canal (ex: https://youtube.com/@canal) para salvar.
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <span>Canais acompanhados</span>
+                    <strong id="stat-channels">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span>Uploads no feed</span>
+                    <strong id="stat-feed">0</strong>
+                </div>
+                <div class="stat-card">
+                    <span>Vídeos salvos</span>
+                    <strong id="stat-saved">0</strong>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-2">
+            <div class="card">
+                <h3>Configuração da API</h3>
+                <div class="grid">
+                    <div>
+                        <label for="api-key">Sua API Key do YouTube</label>
+                        <input id="api-key" name="api-key" type="password" placeholder="Cole sua API key aqui">
+                    </div>
+                    <button class="primary" id="save-api-key" type="button">Salvar API Key</button>
+                    <p class="helper-note">A key fica salva apenas no seu navegador (localStorage).</p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Adicionar canal</h3>
+                <form id="channel-form" class="grid">
+                    <div>
+                        <label for="channel-name">Nome do canal</label>
+                        <input id="channel-name" name="name" type="text" placeholder="Ex: Canal Criativo" required>
+                    </div>
+                    <div>
+                        <label for="channel-link">Link do canal</label>
+                        <input id="channel-link" name="link" type="url" placeholder="https://youtube.com/@canal" required>
+                    </div>
+                    <div>
+                        <label for="channel-tag">Tag principal</label>
+                        <select id="channel-tag" name="tag">
+                            <option value="Tutorial">Tutorial</option>
+                            <option value="Live">Live</option>
+                            <option value="Review">Review</option>
+                            <option value="Inspiração">Inspiração</option>
+                        </select>
+                    </div>
+                    <button class="primary" type="submit">Adicionar</button>
+                </form>
+            </div>
+            <div class="card">
+                <h3>Meus canais</h3>
+                <div id="channel-list" class="channel-list"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        Feito para organizar seus canais favoritos do YouTube sem perder nenhum upload.
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

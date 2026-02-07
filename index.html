@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #1a0026 50%, #2d0040 100%);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #8b5cf6;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #8b5cf6, #a855f7);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 100;
+            letter-spacing: -2px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .cta-button:hover {
+            background: rgba(139, 92, 246, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 100;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #ffffff, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.8), rgba(168, 85, 247, 0.8));
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            text-align: center;
+            color: white;
+        }
+
+        .overlay-text h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .overlay-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .contact-glass {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            font-weight: 100;
+            margin-bottom: 30px;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #8b5cf6;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: #a855f7;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #8b5cf6, #a855f7);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+        }
+    </style>
+    <title>Feed • Meu Hub do YouTube</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header id="header">
+        <nav class="container">
+            <div class="logo">PORTFOLIO</div>
+            <ul class="nav-links">
+                <li><a href="#home">Início</a></li>
+                <li><a href="#fotos">Fotos</a></li>
+                <li><a href="#videos">Vídeos</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+<body data-page="feed">
+    <header>
+        <div class="container nav">
+            <div class="logo">MEU YOUTUBE HUB</div>
+            <nav class="nav-actions">
+                <a class="nav-link" data-page="feed" href="./index.html">Feed</a>
+                <a class="nav-link" data-page="salvos" href="./salvos.html">Vídeos salvos</a>
+                <a class="nav-link" data-page="canais" href="./canais.html">Meus canais</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            
+    <main class="container">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>FÁBIO SILVERIO</h1>
+                <p>designer GEN Z que sabe como comunicar visualmente com a nova internet</p>
+                <a href="#fotos" class="cta-button">Ver Trabalhos</a>
+            </div>
+        </section>
+
+        <section id="fotos" class="container fade-in">
+            <h2 class="section-title">Fotos</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/projeto-1.jpg" alt="Projeto de Branding">
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Branding</h3>
+                            <p>Identidade visual completa</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projeto-2.jpg" alt="Design Editorial">
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Editorial</h3>
+                            <p>Design de revista</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projeto-3.jpg" alt="Design de Packaging">
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Packaging</h3>
+                            <p>Embalagem premium</p>
+                        </div>
+                    </div>
+                <h1>Seu feed pessoal de uploads.</h1>
+                <p>
+                    Adicione os canais que você quer acompanhar e veja os uploads mais recentes aqui.
+                    Salve vídeos para assistir depois.
+                </p>
+                <div class="hero-actions">
+                    <a class="primary-link" href="./canais.html">Adicionar canal</a>
+                    <a class="ghost-link" href="./salvos.html">Ver vídeos salvos</a>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projeto-4.jpg" alt="Interface Digital">
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Digital</h3>
+                            <p>Interface de app</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projeto-5.jpg" alt="Material Print">
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Print</h3>
+                            <p>Material promocional</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/projeto-6.jpg" alt="Logo Design">
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Logo</h3>
+                            <p>Criação de marca</p>
+                        </div>
+                    </div>
+                <div class="helper-note">
+                    <span>Onde coloco o URL do canal?</span>
+                    <a href="./canais.html">Na página “Meus canais”.</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="videos" class="container fade-in">
+            <h2 class="section-title">Vídeos</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <video muted loop autoplay>
+                        <source src="videos/motion-graphics-1.mp4" type="video/mp4">
+                    </video>
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Motion Graphics</h3>
+                            <p>Animação 2D</p>
+                        </div>
+                    </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <span>Canais acompanhados</span>
+                    <strong id="stat-channels">0</strong>
+                </div>
+                <div class="gallery-item">
+                    <video muted loop autoplay>
+                        <source src="videos/brand-video-1.mp4" type="video/mp4">
+                    </video>
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>Brand Video</h3>
+                            <p>Vídeo institucional</p>
+                        </div>
+                    </div>
+                <div class="stat-card">
+                    <span>Uploads no feed</span>
+                    <strong id="stat-feed">0</strong>
+                </div>
+                <div class="gallery-item">
+                    <video muted loop autoplay>
+                        <source src="videos/animacao-3d-1.mp4" type="video/mp4">
+                    </video>
+                    <div class="gallery-overlay">
+                        <div class="overlay-text">
+                            <h3>3D Animation</h3>
+                            <p>Modelagem e render</p>
+                        </div>
+                    </div>
+                <div class="stat-card">
+                    <span>Vídeos salvos</span>
+                    <strong id="stat-saved">0</strong>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="contact">
+            <div class="container">
+                <div class="contact-glass glass">
+                    <h2>Vamos Trabalhar Juntos</h2>
+                    <p>Pronto para criar algo incrível? Entre em contato comigo.</p>
+                    <div class="contact-info">
+                        <a href="mailto:fabiogsilverio@gmail.com" class="contact-item">
+                            <span>📧</span>
+                            <span>fabiogsilverio@gmail.com</span>
+                        </a>
+                        <a href="tel:+5543996450404" class="contact-item">
+                            <span>📱</span>
+                            <span>(43) 99645-0404</span>
+                        </a>
+                        <a href="https://instagram.com/fabiosilverio.design" class="contact-item">
+                            <span>📸</span>
+                            <span>@fabiosilverio.design</span>
+                        </a>
+        <section class="grid grid-2">
+            <div class="card">
+                <h3>Feed principal</h3>
+                <p style="color: var(--muted);">
+                    Quando você adiciona canais, o feed mostra os uploads mais recentes para não perder nada.
+                </p>
+                <div id="feed-list" class="feed"></div>
+            </div>
+            <div class="card">
+                <h3>Filtros rápidos</h3>
+                <p style="color: var(--muted);">Use o filtro para focar no tipo de conteúdo que você quer assistir agora.</p>
+                <div class="grid">
+                    <div>
+                        <label for="filter-channel">Canal</label>
+                        <select id="filter-channel"></select>
+                    </div>
+                    <div>
+                        <label for="filter-tag">Tag</label>
+                        <select id="filter-tag">
+                            <option value="">Todos</option>
+                            <option value="Tutorial">Tutorial</option>
+                            <option value="Live">Live</option>
+                            <option value="Review">Review</option>
+                            <option value="Inspiração">Inspiração</option>
+                        </select>
+                    </div>
+                    <button class="primary" id="apply-filter">Aplicar filtro</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Gallery item hover effects
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const video = item.querySelector('video');
+                if (video) {
+                    video.play();
+                }
+            });
+
+            item.addEventListener('mouseleave', () => {
+                const video = item.querySelector('video');
+                if (video) {
+                    video.pause();
+                }
+            });
+        });
+
+        // Add some interactive particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: rgba(139, 92, 246, 0.6);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1;
+                animation: particleFloat 4s linear forwards;
+            `;
+            
+            particle.style.left = Math.random() * window.innerWidth + 'px';
+            particle.style.top = window.innerHeight + 'px';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 4000);
+        }
+
+        // Add particle animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes particleFloat {
+                to {
+                    transform: translateY(-100vh) translateX(${Math.random() * 200 - 100}px);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    <footer>
+        Feito para organizar seus canais favoritos do YouTube sem perder nenhum upload.
+    </footer>
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
